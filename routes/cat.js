@@ -11,4 +11,9 @@ router.get('/', (req, res, next) => {
   return res.json(catsQueue.peek());
 });
 
+router.delete('/', (req, res, next)=>{
+  catsQueue.deQueue(); 
+  return res.sendStatus(204);
+}); 
+
 module.exports = router;
