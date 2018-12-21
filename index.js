@@ -7,6 +7,8 @@ const morgan = require('morgan');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
+const catRouter = require('./routes/cat.js');
+const dogRouter = require('./routes/dog.js');
 
 const app = express();
 
@@ -21,6 +23,8 @@ app.use(
     origin: CLIENT_ORIGIN
   })
 );
+app.use('/api/dog', dogRouter)
+app.use('/api/cat', catRouter)
 
 function runServer(port = PORT) {
   const server = app
